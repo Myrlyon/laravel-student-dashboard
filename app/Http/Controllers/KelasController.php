@@ -11,7 +11,7 @@ class KelasController extends Controller
     {
         return view('kelas.all', [
             'title' => 'Kelas',
-            'kelas' => Kelas::all(),
+            'kelas' => Kelas::latest()->filter(request(['search']))->paginate(17),
         ]);
     }
 

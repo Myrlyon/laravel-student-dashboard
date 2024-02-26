@@ -12,7 +12,7 @@ class StudentController extends Controller
     {
         return view('student.all', [
             'title' => 'Student',
-            'student' => Student::all(),
+            'student' => Student::latest()->filter(request(['search']))->paginate(17),
         ]);
     }
 
@@ -62,7 +62,7 @@ class StudentController extends Controller
 
         Student::create($request->all());
 
-        return redirect('/student/all')->with('success', 'Data Student berhasil ditambahkan');
+        return redirect('/dashboard/student')->with('success', 'Data Student berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -86,7 +86,7 @@ class StudentController extends Controller
         $student = Student::find($id);
         $student->update($validateData);
 
-        return redirect('/student/all')->with('success', 'Data siswa berhasil diperbarui');
+        return redirect('/dashboard/student')->with('success', 'Data siswa berhasil diperbarui');
     }
 
     public function remove($id)
@@ -97,6 +97,13 @@ class StudentController extends Controller
         }
 
         $student->delete();
-        return redirect('/student/all')->with('success', 'Data berhasil dihapus');
+        return redirect('/dashboard/student')->with('success', 'Data berhasil dihapus');
     }
+
+    // public function student()
+    // {
+    //     return view('student.all', [
+    //         'student' => Student::latest()->filter(request(['search']))->paginate(13),
+    //     ]);
+    // }
 }

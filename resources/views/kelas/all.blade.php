@@ -2,6 +2,13 @@
 @section('container')
     <h1>Kelas Information</h1>
     {{-- <a href="/kelas/create/" class="btn btn-outline-success">Add</a> --}}
+    <form action="/kelas/all">
+        <div class="input-group mb-3 ">
+            <input type="text" class="form-control" placeholder="Search for Kelas" name="search"
+                value="{{ request('search') }}">
+            <button class="btn btn-info bg-success text-white" type="submit" id="button-addon2">Search</button>
+        </div>
+    </form>
     <table class="table table-striped">
         <thead class="table-light">
             <tr>
@@ -23,4 +30,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="justify-content-center">
+        {{ $kelas->links() }}
+    </div>
 @endsection

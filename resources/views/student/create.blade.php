@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('dashboard.main')
 
 @section('container')
     <h3>Create Student</h3>
